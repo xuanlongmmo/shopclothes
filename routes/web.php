@@ -131,3 +131,5 @@ Route::group(['prefix' => 'section'], function() {
     Route::get('editsection/{id}','Admin\sectionController@editsection')->name('admin.editsection');
     Route::get('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
 });
+
+Route::get('subriceemail','Frontend\EmailController@subrice_email')->name('frontend.subriceemail');
