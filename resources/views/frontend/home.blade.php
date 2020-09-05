@@ -1441,8 +1441,9 @@
           <div class="aa-subscribe-area">
             <h3>Đăng kí nhận tin khuyến mãi qua email </h3>
             {{--  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, velit!</p>  --}}
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Nhập mail">
+            <form action="{{ route('frontend.subriceemail') }}" class="aa-subscribe-form">
+              @csrf
+              <input type="email" name="email" id="" placeholder="Nhập mail">
               <input type="submit" value="Đăng kí">
             </form>
           </div>
