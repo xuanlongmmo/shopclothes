@@ -12,7 +12,7 @@ class section_content extends Model
 
     public function product()
     {
-        return $this->hasMany('App\product', 'id_product', 'id');
+        return $this->hasMany('App\product', 'id', 'id_product');
     }
 
 }

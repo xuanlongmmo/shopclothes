@@ -11,9 +11,9 @@ class EmailController extends Controller
 {
     public function subrice_email(Request $request){
         if($request->email != null){
-            $db = new list_email_subcribe();
-            $db->email = $request->email;
-            $db->save();
+            $db = list_email_subcribe::updateOrCreate([
+                'email' => $request->email
+            ]);
             return redirect()->back();
         }
     }

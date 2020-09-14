@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLargeCategoryProductTable extends Migration
+class CreateCategoryNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateLargeCategoryProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('large_category_product', function (Blueprint $table) {
-            $table->increments('id_large_category');
-            $table->string('large_category_name');
+        Schema::create('category_news', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('category_name');
             $table->string('slug_name');
         });
     }
@@ -27,6 +27,6 @@ class CreateLargeCategoryProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('large_category_product');
+        Schema::dropIfExists('category_news');
     }
 }

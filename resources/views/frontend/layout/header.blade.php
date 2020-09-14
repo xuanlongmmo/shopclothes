@@ -173,30 +173,37 @@
             <ul class="nav navbar-nav">
               <li><a href="{{ route('frontend.index') }}">Trang chủ</a></li>
               @foreach ($data_category as $item)
-                    @if ($item->small_category_product->isNotEmpty())
-                      <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}"> {{ $item->large_category_name }}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                          @foreach ($item->small_category_product as $ite)
-                            <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$ite->slug_name]) }}">{{ $ite->small_category_name }}</a></li>
-                          @endforeach 
-                        </ul>
-                      </li>
+                @if ($item->id_parent == 0)
+                    @php
+                        $count = 0;
+                    @endphp
+                    @foreach ($data_category as $ite)
+                        @if ($ite->id_parent == $item->id)
+                            @php
+                              $count++;
+                            @endphp
+                        @endif
+                    @endforeach
+                    @if ($count == 0)
+                      <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->category_name }}</a></li>
                     @else
-                      <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->large_category_name }}</a></li>
-                    @endif              
-                    {{--  <li><a href="#">And more.. <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Sleep Wear</a></li>
-                        <li><a href="#">Sandals</a></li>
-                        <li><a href="#">Loafers</a></li>                                      
+                    <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->category_name }}<span class="caret"></span></a>
+                      <ul class="dropdown-menu">   
+                        @foreach ($data_category as $child)
+                          @if ($child->id_parent == $item->id)
+                            <li><a href="{{ route('frontend.detailcategory', ['slug_name'=>$child->slug_name]) }}">{{ $child->category_name }}</a></li>
+                          @endif
+                        @endforeach         
                       </ul>
-                    </li>  --}}
+                    </li>
+                    @endif
+                @endif 
               @endforeach
-              <li><a href="{{ route('frontend.blog') }}">Tin tức <span class="caret"></span></a>
-                <ul class="dropdown-menu">                
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
+              <li><a href="{{ route('frontend.news') }}">Tin tức <span class="caret"></span></a>
+                <ul class="dropdown-menu">       
+                  @foreach ($data_category_news as $item)
+                    <li><a href="{{ route('frontend.detailcategorynews', ['slug_name'=>$item->slug_name]) }}">{{ $item->category_name }}</a></li>
+                  @endforeach         
                 </ul>
               </li>
               <li><a href="{{ route('frontend.contact') }}">Liên hệ</a></li>

@@ -7,6 +7,7 @@ use App\large_category_product;
 use App\User;
 use App\banner;
 use App\section;
+use App\news;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,8 +19,10 @@ class HomeController extends Controller
     public function getIndex(){
         $large_banners = banner::where('type',1)->get();
         $small_banners = banner::where('type',2)->get();
-        $sections = section::all();
-        return view('frontend.home',compact('large_banners','small_banners','sections'));
+        $section_category = section::where('type',1)->get();
+        $section_popular = section::where('type',2)->get();
+        $news = news::all();
+        return view('frontend.home',compact('large_banners','small_banners','section_category','section_popular','news'));
     }
 
 }

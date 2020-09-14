@@ -16,7 +16,6 @@ class CreateListEmailSubcribeTable extends Migration
         Schema::create('list_email_subcribe', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
-            $table->timestamps();
         });
     }
 

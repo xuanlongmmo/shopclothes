@@ -74,8 +74,11 @@ Route::group(['prefix' => 'cart'], function() {
 Route::get('checkout','Frontend\CheckoutController@checkout')->name('frontend.checkout');
 
 //Liên hệ
-Route::get('contact','Frontend\ContactController@contact')->name('frontend.contact');
-Route::post('contact','Frontend\ContactController@postcontact')->name('frontend.postcontact');
+Route::get('lienhe','Frontend\ContactController@contact')->name('frontend.contact');
+Route::post('lienhe','Frontend\ContactController@postcontact')->name('frontend.postcontact');
+
+//Đăng kí nhận tin qua email
+Route::get('subriceemail','Frontend\EmailController@subrice_email')->name('frontend.subriceemail');
 
 //Sản phẩm
 Route::group(['prefix' => 'product'], function() {
@@ -93,15 +96,23 @@ Route::group(['prefix' => 'product'], function() {
 
 
 //tin tức
-Route::group(['prefix' => 'blog'], function() {
-    Route::get('/','Frontend\BlogController@blog')->name('frontend.blog');
+Route::group(['prefix' => 'news'], function() {
+    Route::get('/','Frontend\NewsController@news')->name('frontend.news');
+
+    Route::get('category/{slug_name}','Frontend\NewsController@detailcategory')->name('frontend.detailcategorynews');
+
+    Route::get('detailnews/{id}','Frontend\NewsController@detailnews')->name('frontend.detailnews');
+
+    Route::post('postcomment','Frontend\NewsController@postcomment')->name('frontend.postcomment');
 });
 
 //Admin
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/','Admin\AdminController@admin')->name('admin');
+    // Route::get('/','Admin\AdminController@admin')->name('admin')->middleware('admin.checkadmin');
 });
 
+//Quản lý chi nhánh
 Route::group(['prefix' => 'branch'], function() {
     Route::get('/','Admin\BranchController@getbranch')->name('admin.branch');
     Route::get('deletebanner/{id}','Admin\BranchController@deletebranch')->name('admin.deletebranch');
@@ -113,7 +124,7 @@ Route::group(['prefix' => 'branch'], function() {
     Route::get('posteditbranch','Admin\BranchController@posteditbranch')->name('admin.posteditbranch');
 });
 
-
+//Quản lý banner
 Route::group(['prefix' => 'banner'], function() {
     Route::get('/','Admin\BannerController@getbanner')->name('admin.banner');
 
@@ -121,6 +132,7 @@ Route::group(['prefix' => 'banner'], function() {
     Route::get('posteditbanner','Admin\BannerController@posteditbanner')->name('admin.posteditbanner');
 });
 
+//Quản lý section
 Route::group(['prefix' => 'section'], function() {
     Route::get('/','Admin\sectionController@getsection')->name('admin.section');
     Route::get('deletesection/{id}','Admin\sectionController@deletesection')->name('admin.deletesection');
@@ -132,4 +144,43 @@ Route::group(['prefix' => 'section'], function() {
     Route::get('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
 });
 
-Route::get('subriceemail','Frontend\EmailController@subrice_email')->name('frontend.subriceemail');
+//Quản lý liên hệ
+Route::group(['prefix' => 'contact'], function() {
+    Route::get('/','Admin\ContactController@getcontact')->name('admin.contact');
+
+    Route::get('getrefcontact/{id}','Admin\ContactController@getrefcontact')->name('admin.getrefcontact');
+    Route::post('postrefcontact','Admin\ContactController@postrefcontact')->name('admin.postrefcontact');
+});
+
+Route::group(['prefix' => 'category'], function() {
+    Route::get('/','Admin\CategoryController@getcategory')->name('admin.category');
+    // Route::get('deletesection/{id}','Admin\CategoryController@deletesection')->name('admin.deletesection');
+
+    // Route::get('addsection','Admin\CategoryController@addsection')->name('admin.addsection');
+    // Route::get('postaddsection','Admin\CategoryController@postaddsection')->name('admin.postaddsection');
+
+    // Route::get('editsection/{id}','Admin\sectionController@editsection')->name('admin.editsection');
+    // Route::get('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
+});
+
+Route::group(['prefix' => 'adminnews'], function() {
+    Route::get('/','Admin\NewsController@getnews')->name('admin.news');
+    Route::get('deletenews/{id}','Admin\NewsController@deletenews')->name('admin.deletenews');
+
+    Route::get('addnews','Admin\NewsController@addnews')->name('admin.addnews');
+    Route::post('postaddnews','Admin\NewsController@postaddnews')->name('admin.postaddnews');
+
+    Route::get('editnews/{id}','Admin\NewsController@editnews')->name('admin.editnews');
+    Route::post('posteditnews','Admin\NewsController@posteditnews')->name('admin.posteditnews');
+});
+
+Route::group(['prefix' => 'adminproduct'], function() {
+    Route::get('/','Admin\ProductController@getproduct')->name('admin.product');
+    Route::get('deleteproduct/{id}','Admin\ProductController@deleteproduct')->name('admin.deleteproduct');
+
+    Route::get('addproduct','Admin\ProductController@addproduct')->name('admin.addproduct');
+    Route::post('postaddproduct','Admin\ProductController@postaddproduct')->name('admin.postaddproduct');
+
+    Route::get('editproduct/{id}','Admin\ProductController@editproduct')->name('admin.editproduct');
+    Route::post('posteditproduct','Admin\ProductController@posteditproduct')->name('admin.posteditproduct');
+});

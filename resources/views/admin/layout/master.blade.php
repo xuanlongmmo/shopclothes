@@ -196,23 +196,31 @@
               </a>
             </li>
             <li>
-                <a href="email.html"> <i class="material-icons">email</i> <span class="title">Liên hệ</span> <span class=" badge badge-disable pull-right ">15</span>
+                <a href="{{ route('admin.contact') }}"> <i class="material-icons">email</i> <span class="title">Liên hệ</span> <span class=" badge badge-disable pull-right ">{{ count($data_messeger) }}</span>
                 </a>
             </li>
             <li>
               <a href="javascript:;"> <i class="fa fa-list" aria-hidden="true"></i> <span class="title">Quản lý danh mục</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
-                <li> <a href="theme_coporate.html">Danh sách danh mục </a> </li>
-                <li> <a href="theme_simple.html">Thêm danh mục</a> </li>
+                <li> <a href="{{ route('admin.category') }}">Danh sách danh mục </a> </li>
+                <li> <a href="">Thêm danh mục lớn</a> </li>
+                <li> <a href="">Thêm danh mục nhỏ</a> </li>
               </ul>
             </li>
             <li>
                 <a href="javascript:;"> <i class="fa fa-futbol-o" aria-hidden="true"></i> <span class="title">Quản lý sản phẩm</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
-                  <li> <a href="theme_coporate.html">Danh sách sản phẩm </a> </li>
-                  <li> <a href="theme_simple.html">Thêm sản phẩm</a> </li>
+                  <li> <a href="{{ route('admin.product') }}">Danh sách sản phẩm </a> </li>
+                  <li> <a href="{{ route('admin.addproduct') }}">Thêm sản phẩm</a> </li>
                 </ul>
             </li>
+            <li>
+              <a href="javascript:;"> <i class="fa fa-newspaper-o" aria-hidden="true"></i><span class="title">Quản lý tin</span> <span class=" arrow"></span> </a>
+              <ul class="sub-menu">
+                <li> <a href="{{ route('admin.news') }}">Danh sách tin</a> </li>
+                <li> <a href="{{ route('admin.addnews') }}">Thêm tin mới</a> </li>
+              </ul>
+          </li>
             <li>
                 <a href="javascript:;"><i class="fa fa-money" aria-hidden="true"></i> <span class="title">Quản lý doanh thu</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
@@ -220,6 +228,13 @@
                   <li> <a href="theme_simple.html">Doanh số</a> </li>
                 </ul>
             </li>
+            <li>
+              <a href="javascript:;"> <i class="fa fa-cc-discover" aria-hidden="true"></i> <span class="title">Quản lý discount</span> <span class=" arrow"></span> </a>
+              <ul class="sub-menu">
+                <li> <a href="">Danh sách discount</a> </li>
+                <li> <a href="">Thêm discount</a> </li>
+              </ul>
+          </li>
             <li>
               <a href="javascript:;"> <i class="fa fa-info-circle" aria-hidden="true"></i> <span class="title">Quản lý website</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
@@ -231,19 +246,19 @@
             <li>
                 <a href="javascript:;"> <i class="fa fa-truck" aria-hidden="true"></i> <span class="title">Quản lý giao hàng</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
-                  <li> <a href="theme_coporate.html">Đã giao</a> </li>
-                  <li> <a href="theme_simple.html">Đang giao</a> </li>
+                  <li> <a href="">Đã giao</a> </li>
+                  <li> <a href="">Đang giao</a> </li>
                 </ul>
             </li>
             <li>
                 <a href="javascript:;"> <i class="fa fa-user" aria-hidden="true"></i> <span class="title">Quản lý người dùng</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
-                  <li> <a href="theme_coporate.html">Danh sách người dùng</a> </li>
-                  <li> <a href="theme_simple.html">Danh sách comment</a> </li>
+                  <li> <a href="">Danh sách người dùng</a> </li>
+                  <li> <a href="">Danh sách comment</a> </li>
                 </ul>
             </li>
             <li>
-                <a href="email.html"> <i class="material-icons">airplay</i> <span class="title">Quản lý quyền truy cập</span>
+                <a href=""> <i class="material-icons">airplay</i> <span class="title">Quản lý quyền truy cập</span>
                 </a>
             </li>
           </ul>
@@ -316,6 +331,20 @@
         $(document).ready( function () {
             $('table').DataTable();
         } );
+    </script>
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <script>
+            CKEDITOR.replace( 'editor1' );
+    </script>
+    <script>
+      CKEDITOR.replace( 'editor1', {
+          filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+          filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+          filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+          filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+          filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+          filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+      } );
     </script>
     <!-- END PAGE LEVEL PLUGINS   -->
     <!-- PAGE JS -->

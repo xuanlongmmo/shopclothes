@@ -18,13 +18,15 @@ class CreateProductTable extends Migration
             $table->string('product_name');
             $table->string('link_image');
             $table->bigInteger('price');
+            $table->integer('quantity')->default(0);
+            $table->integer('sold')->default(0);
             $table->integer('sale_percent')->default(0);
-            $table->text('short_description');
             $table->text('description');
-            $table->integer('id_large_category')->unsigned();
-            $table->foreign('id_large_category')->references('id_large_category')->on('large_category_product')->onDelete('cascade');
-            $table->integer('id_small_category')->unsigned();
-            $table->foreign('id_small_category')->references('id_small_category')->on('small_category_product')->onDelete('cascade');
+            $table->integer('status')->default(0);
+            $table->integer('large_category')->unsigned();
+            $table->foreign('large_category')->references('id')->on('category_product')->onDelete('cascade');
+            $table->integer('small_category')->unsigned()->default(0);
+            $table->foreign('small_category')->references('id')->on('category_product')->onDelete('cascade');
             $table->timestamps();
         });
     }

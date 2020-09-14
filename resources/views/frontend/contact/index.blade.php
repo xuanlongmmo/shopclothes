@@ -25,11 +25,13 @@
                       <div class="col-md-6">
                         <div class="form-group">                        
                           <input name="name" type="text" placeholder="Họ và tên" class="form-control">
+                          <span style="color: red">{{ $errors->first('name') }}</span><br>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">                        
-                          <input name="email" type="email" placeholder="Email" class="form-control">
+                          <input name="email" type="text" placeholder="Email" class="form-control">
+                          <span style="color: red">{{ $errors->first('email') }}</span><br>
                         </div>
                       </div>
                     </div>
@@ -37,17 +39,20 @@
                       <div class="col-md-6">
                         <div class="form-group">                        
                           <input name="title" type="text" placeholder="Tiêu đề" class="form-control">
+                          <span style="color: red">{{ $errors->first('title') }}</span><br>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">                        
                           <input name="phone" type="text" placeholder="Số điện thoại" class="form-control">
+                          <span style="color: red">{{ $errors->first('phone') }}</span><br>
                         </div>
                       </div>
                     </div>                  
                      
                     <div class="form-group">                        
                       <textarea name="content" class="form-control" rows="3" placeholder="Nội dung"></textarea>
+                      <span style="color: red">{{ $errors->first('content') }}</span><br>
                     </div>
                     <button class="aa-secondary-btn">Gửi</button>
                   </form>
