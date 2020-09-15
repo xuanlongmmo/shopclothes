@@ -1624,6 +1624,7 @@ img.small {
   font-weight: bold;
 }
 .aa-latest-blog-single .aa-blog-info .aa-blog-title a {
+  display: block;
   color: #222;
   font-size: 18px;
   -webkit-transition: all 0.5s ease 0s;
@@ -1631,9 +1632,17 @@ img.small {
   -ms-transition: all 0.5s ease 0s;
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
+  width: 360px;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.aa-latest-blog-single .aa-blog-info p {
+.aa-latest-blog-single .aa-blog-info div.news {
   font-size: 15px;
+  width: 360px;
+  height: 84px;
+  display: block;
+  overflow: hidden;
 }
 .aa-latest-blog-single .aa-blog-info .aa-read-mor-btn {
   border-bottom: 1px solid transparent;
@@ -2709,15 +2718,23 @@ img.small {
   margin-bottom: 20px;
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-content .aa-blog-content-single h4 a {
+  display: block;
   color: #5555;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  width: 240px;
+  height: 45px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-#aa-blog-archive .aa-blog-archive-area .aa-blog-content .aa-blog-content-single p {
+#aa-blog-archive .aa-blog-archive-area .aa-blog-content .aa-blog-content-single div.news {
   font-size: 14px;
+  width: 263px;
+  height: 120px;
+  overflow: hidden;
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-content .aa-blog-content-single .aa-blog-img {
   position: relative;
@@ -2863,6 +2880,10 @@ img.small {
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  width: 134px;
+  height: 78px;
+  overflow: hidden;
+  display: block;
 }
 #aa-blog-archive .aa-blog-archive-area .aa-blog-sidebar .aa-sidebar-widget .aa-recently-views ul li .aa-cartbox-info p {
   font-size: 12px;
@@ -4194,3 +4215,24 @@ img.small {
   }
 }
 
+/*đánh giá sao*/
+.ratingStarContainer{
+  direction : rtl;
+  float : left;
+  text-align : left;
+  display: inline-block;
+}
+.ratingStarContainer  input[type="radio"]{
+  display: none;
+}
+.ratingStarContainer i{
+  color: #dddddd;
+  cursor: pointer;
+}
+.ratingStarContainer  input[type="radio"]:checked ~ label  i{
+  color: #FFD700;
+}
+.fa-star:before {
+    content: "\f005";
+    font-size: 15px;
+}

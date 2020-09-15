@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 //Gọi model
-use App\large_category_product;
+use App\category_product;
 use App\branch;
 use App\User;
+use App\category_news;
+use App\contact;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -32,13 +34,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*',function($view){
             $view->with([
                 'data_unique'=> branch::all(),
-                'data_category'=> large_category_product::all()
+                'data_category'=> category_product::all(),
+                'data_category_news'=> category_news::all(),
+                'data_messeger'=> contact::where('status',0)->get(),
             ]);
-            // if(Auth::check()){
-            //     $view->with([
-            //         'user_unique' => User::where('username',Auth::user()->username)->get(),
-            //     ]);
-            // }
         });
     }
 }

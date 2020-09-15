@@ -16,7 +16,7 @@
                       <div class="simpleLens-big-image-container"><a data-lens-image="{{ $product->link_image }}" class="simpleLens-lens-image"><img src="{{ $product->link_image }}" class="simpleLens-big-image"></a></div>
                     </div>
                     <div class="simpleLens-thumbnails-container">
-                        <a data-big-image="{{ $product->link_image }}" data-lens-image="{{ $product->link_image }}" class="simpleLens-thumbnail-wrapper" href="#">
+                        <a  data-big-image="{{ $product->link_image }}" data-lens-image="{{ $product->link_image }}" class="simpleLens-thumbnail-wrapper" href="#">
                           <img class="small" src="{{ $product->link_image }}">
                         </a>                                    
                         <a data-big-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-1-4-600x600.jpg" data-lens-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-1-4-600x600.jpg" class="simpleLens-thumbnail-wrapper" href="#">
@@ -54,7 +54,6 @@
                       <p style="margin-top: 10px" class="aa-product-avilability">Trạng thái: <span>Còn hàng</span></p>
                     @endif
                   </div>
-                  <p>{{ $product->short_description }}</p>
                   {{--  <h4>Color</h4>
                   <div class="aa-color-tag">
                     <a href="#" class="aa-color-green"></a>

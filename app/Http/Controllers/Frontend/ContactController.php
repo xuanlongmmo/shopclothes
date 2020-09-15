@@ -9,6 +9,8 @@ use Mail;
 //Gọi model
 use App\contact;
 
+use App\Http\Requests\postcontact;
+
 class ContactController extends Controller
 {
     //Liên hệ
@@ -16,7 +18,7 @@ class ContactController extends Controller
         return view('frontend.contact.index');
     }
 
-    public function postcontact(Request $request){
+    public function postcontact(postcontact $request){
         $save = contact::create($request->all());
         
         $data = [

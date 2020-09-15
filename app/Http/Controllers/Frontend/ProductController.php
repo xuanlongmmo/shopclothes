@@ -16,7 +16,7 @@ class ProductController extends Controller
     //Danh sách sản phẩm
     public function listproduct(){
         $categories = large_category_product::all();
-        $products = product::paginate(12); 
+        $products = product::paginate(3); 
         //Lấy 3 sản phẩm top đánh giá
         $db = new product();
         $product = $db->review->avg('star');

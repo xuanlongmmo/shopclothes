@@ -37,7 +37,7 @@
                 <li>
                   <figure>
                     <a class="aa-product-img" href="#"><img style="width: 250px;height: 300px;" src="{{ $item->link_image }}" alt="polo shirt img"></a>
-                    <button style="width: 250px;margin-left: 5px" class="aa-add-card-btn" onclick="return addcart(this);" id="{{ $item->id }}" value="{{ $item->id }}">Thêm vào giỏ hàng</button>
+                    {{--  <button style="width: 250px;margin-left: 5px" class="aa-add-card-btn" onclick="return addcart(this);" id="{{ $item->id }}" value="{{ $item->id }}">Thêm vào giỏ hàng</button>  --}}
                     {{--  <a class="aa-add-card-btn"  href="{{ route('frontend.addcart', ['id'=>$item->id]) }}" id="{{ $item->id }}" value="{{ $item->id }}"><span class="fa fa-shopping-cart"></span>Thêm vào giỏ hàng</a>  --}}
                     <figcaption>
                       <h4 class="aa-product-title"><a href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}">{{ $item->product_name }}</a></h4>
@@ -288,7 +288,7 @@
 </section>
 <!-- / product category -->
 @endsection
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+{{--  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     function addcart(e){
       var id = e.value;
@@ -302,4 +302,4 @@
         }
       });
     }
-</script>
+</script>  --}}
