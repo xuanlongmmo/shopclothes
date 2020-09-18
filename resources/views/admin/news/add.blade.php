@@ -12,6 +12,10 @@
         color: black;
         margin: 10px 0px;
     }
+    input.check{
+        width: 12px;
+        height: 12px;
+    }
 </style>
 @section('content')
 <div class="page-title">
@@ -29,6 +33,11 @@
         <label for="">Tiêu đề</label>
         <input type="text" name="title"><br>
         <span style="color: red">{{ $errors->first('title') }}</span><br>
+        <label for="">Trạng thái</label>
+        <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
+        <div></div>
+        <input class="check" type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span><br>
+        <span style="color: red">{{ $errors->first('status') }}</span><br>
         <label for="">Ảnh tiêu đề</label>
         <input style="border: none" type="file" name="image">
         <span style="color: red">{{ $errors->first('image') }}</span><br>

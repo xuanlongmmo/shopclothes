@@ -36,7 +36,7 @@
               @foreach ($products as $item)
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="#"><img style="width: 250px;height: 300px;" src="{{ $item->link_image }}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}"><img style="width: 250px;height: 300px;" src="{{ $item->link_image }}" alt="polo shirt img"></a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}">{{ $item->product_name }}</a></h4>
                       @if ($item->sale_percent > 0)
@@ -171,7 +171,7 @@
             <h3>Danh mục</h3>
             <ul class="aa-catg-nav">
               @foreach ($categories as $item)
-                <li style="margin-top: 2px"><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->large_category_name }}</a></li>
+                <li style="margin-top: 2px"><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->category_name }}</a></li>
               @endforeach
             </ul>
           </div>
@@ -231,7 +231,7 @@
                 @endphp
                 @foreach ($products as $item)
                     <li>
-                        <a href="#" class="aa-cartbox-img"><img alt="img" src="{{ $item->link_image }}"></a>
+                        <a href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}" class="aa-cartbox-img"><img alt="img" src="{{ $item->link_image }}"></a>
                         <div class="aa-cartbox-info">
                         <h4><a href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}">{{ $item->product_name }}</a></h4>
                         <p>{{ number_format($item->price) }} vnđ</p>

@@ -36,7 +36,7 @@
               @foreach ($products as $item)
                 <li>
                   <figure>
-                    <a class="aa-product-img" href="#"><img style="width: 250px;height: 300px;" src="{{ $item->link_image }}" alt="polo shirt img"></a>
+                    <a class="aa-product-img" href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}"><img style="width: 250px;height: 300px;" src="{{ $item->link_image }}" alt="polo shirt img"></a>
                     {{--  <button style="width: 250px;margin-left: 5px" class="aa-add-card-btn" onclick="return addcart(this);" id="{{ $item->id }}" value="{{ $item->id }}">Thêm vào giỏ hàng</button>  --}}
                     {{--  <a class="aa-add-card-btn"  href="{{ route('frontend.addcart', ['id'=>$item->id]) }}" id="{{ $item->id }}" value="{{ $item->id }}"><span class="fa fa-shopping-cart"></span>Thêm vào giỏ hàng</a>  --}}
                     <figcaption>
@@ -172,7 +172,7 @@
             <h3>Danh mục</h3>
             <ul class="aa-catg-nav">
               @foreach ($categories as $item)
-                <li style="margin-top: 2px"><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->large_category_name }}</a></li>
+                <li style="margin-top: 2px"><a href="{{ route('frontend.detailcategory', ['slug_name'=>$item->slug_name]) }}">{{ $item->category_name }}</a></li>
               @endforeach
             </ul>
           </div>

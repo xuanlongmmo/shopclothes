@@ -154,13 +154,13 @@ Route::group(['prefix' => 'contact'], function() {
 
 Route::group(['prefix' => 'category'], function() {
     Route::get('/','Admin\CategoryController@getcategory')->name('admin.category');
-    // Route::get('deletesection/{id}','Admin\CategoryController@deletesection')->name('admin.deletesection');
+    Route::get('deletecategory/{id}','Admin\CategoryController@deletecategory')->name('admin.deletecategory');
 
-    // Route::get('addsection','Admin\CategoryController@addsection')->name('admin.addsection');
-    // Route::get('postaddsection','Admin\CategoryController@postaddsection')->name('admin.postaddsection');
+    Route::get('addcategory','Admin\CategoryController@addcategory')->name('admin.addcategory');
+    Route::post('postaddcategory','Admin\CategoryController@postaddcategory')->name('admin.postaddcategory');
 
-    // Route::get('editsection/{id}','Admin\sectionController@editsection')->name('admin.editsection');
-    // Route::get('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
+    Route::get('editcategory/{id}','Admin\categoryController@editcategory')->name('admin.editcategory');
+    Route::post('posteditcategory','Admin\categoryController@posteditcategory')->name('admin.posteditcategory');
 });
 
 Route::group(['prefix' => 'adminnews'], function() {
@@ -183,4 +183,12 @@ Route::group(['prefix' => 'adminproduct'], function() {
 
     Route::get('editproduct/{id}','Admin\ProductController@editproduct')->name('admin.editproduct');
     Route::post('posteditproduct','Admin\ProductController@posteditproduct')->name('admin.posteditproduct');
+});
+
+Route::group(['prefix' => 'revenue'], function() {
+    Route::get('/','Admin\RevenueController@list_import')->name('admin.list_import');
+    Route::get('sales','Admin\RevenueController@getsales')->name('admin.sales');
+
+    Route::get('import_goods','Admin\RevenueController@import_goods')->name('admin.import_goods');
+    Route::post('import_goods','Admin\RevenueController@postimport_goods')->name('admin.postimport_goods');
 });

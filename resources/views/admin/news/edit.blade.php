@@ -12,6 +12,10 @@
         color: black;
         margin: 10px 0px;
     }
+    input.check{
+        width: 12px;
+        height: 12px;
+    }
 </style>
 @section('content')
 <div class="page-title">
@@ -33,8 +37,18 @@
         </select><br>
         <label for="">Tiêu đề</label>
         <input value="{{ $news->title }}" type="text" name="title"><br>
+        <label for="">Trạng thái</label>
+        @if ($news->status == 1)
+            <input class="check" checked type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
+            <div></div>
+            <input class="check" type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span><br>
+        @else
+            <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
+            <div></div>
+            <input class="check" checked type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span><br>
+        @endif
         <label for="">Ảnh tiêu đề</label>
-        <img src="{{ $news->link_image }}" alt=""><br><br>
+        <img src="{{ $news->link_image }}" alt="">
         <input style="border: none" type="file" name="image">
         <label for="">Nội dung</label>
         <textarea cols="30" rows="100" name="editor1">{!! html_entity_decode($news->content) !!}</textarea>

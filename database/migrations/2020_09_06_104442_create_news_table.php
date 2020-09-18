@@ -22,7 +22,7 @@ class CreateNewsTable extends Migration
             $table->foreign('id_category')->references('id')->on('category_news')->onDelete('cascade');
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
