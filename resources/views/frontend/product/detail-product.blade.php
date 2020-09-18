@@ -16,15 +16,12 @@
                       <div class="simpleLens-big-image-container"><a data-lens-image="{{ $product->link_image }}" class="simpleLens-lens-image"><img src="{{ $product->link_image }}" class="simpleLens-big-image"></a></div>
                     </div>
                     <div class="simpleLens-thumbnails-container">
-                        <a  data-big-image="{{ $product->link_image }}" data-lens-image="{{ $product->link_image }}" class="simpleLens-thumbnail-wrapper" href="#">
-                          <img class="small" src="{{ $product->link_image }}">
-                        </a>                                    
-                        <a data-big-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-1-4-600x600.jpg" data-lens-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-1-4-600x600.jpg" class="simpleLens-thumbnail-wrapper" href="#">
-                          <img class="small" src="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-1-4-600x600.jpg">
-                        </a>
-                        <a data-big-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-2-4-600x600.jpg" data-lens-image="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-2-4-600x600.jpg" class="simpleLens-thumbnail-wrapper" href="#">
-                          <img class="small" src="https://www.sporter.vn/wp-content/uploads/2017/06/Ao-real-san-nha-2-4-600x600.jpg">
-                        </a>
+                        @foreach ($product->image_product as $item)
+                          <a  data-big-image="{{ $item->image }}" data-lens-image="{{ $item->image }}" class="simpleLens-thumbnail-wrapper" href="#">
+                            <img class="small" src="{{ $item->image }}">
+                          </a>
+                          {{--  style="pointer-events: none;cursor: default;"  --}}
+                        @endforeach                                    
                     </div>
                   </div>
                 </div>
@@ -80,7 +77,10 @@
                       </select>
                     </form>
                     <p class="aa-prod-category">
-                      Danh mục : <a href="{{ route('frontend.detailcategory', ['slug_name'=>$product->large_category_product->slug_name]) }}">{{ $product->large_category_product->large_category_name }}</a>
+                      Danh mục : <a href="{{ route('frontend.detailcategory', ['slug_name'=>$product->get_large_category->slug_name]) }}">{{ $product->get_large_category->category_name }}</a>
+                      @if ($product->small_category != 0)
+                        , <a href="{{ route('frontend.detailcategory', ['slug_name'=>$product->get_small_category->slug_name]) }}">{{ $product->get_small_category->category_name }}</a>
+                      @endif
                     </p>
                   </div>
                   <div class="aa-prod-view-bottom">
@@ -100,7 +100,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div class="tab-pane fade in active" id="description">
-              {{ $product->description }}
+              {!! html_entity_decode($product->description) !!}
               </div>
               <div class="tab-pane fade " id="review">
                <div class="aa-product-review-area">

@@ -27,6 +27,7 @@ class addnews extends FormRequest
             'title' => 'required|min:5|max:1000',
             'image' => 'required|mimes:jpeg,jpg,png|max:5120',
             'editor1' => 'required',
+            'status' => 'required',
         ];
     }
 
@@ -39,6 +40,7 @@ class addnews extends FormRequest
             'image.mimes' => 'Ảnh phải có định dạng là jpg,jpge,png',
             'image.max' => 'Ảnh không được vượt quá 5Mb',
             'editor1.required' => 'Nội dung không được để trống',
+            'status.required' => 'Trạng thái không được để trống',
         ];
     }
 }

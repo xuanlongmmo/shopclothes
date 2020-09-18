@@ -37,6 +37,7 @@ class NewsController extends Controller
         $db->link_image = 'sources/img/news/'.$imageName;
         $db->id_category = $request->category;
         $db->id_user = Auth::user()->id;
+        $db->status = $request->status;
         $db->save();
         return redirect()->route('admin.news');
     }
@@ -56,12 +57,14 @@ class NewsController extends Controller
                 'id_category' => $request->category,
                 'title' => $request->title,
                 'content' => $request->editor1,
-                'link_image' => 'sources/img/news/'.$imageName
+                'link_image' => 'sources/img/news/'.$imageName,
+                'status' => $request->status,
             ]);
         }else{
             $update = news::where('id',$id)->update([
                 'id_category' => $request->category,
                 'title' => $request->title,
+                'status' => $request->status,
                 'content' => $request->editor1,
             ]);
         }

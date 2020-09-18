@@ -203,8 +203,7 @@
               <a href="javascript:;"> <i class="fa fa-list" aria-hidden="true"></i> <span class="title">Quản lý danh mục</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
                 <li> <a href="{{ route('admin.category') }}">Danh sách danh mục </a> </li>
-                <li> <a href="">Thêm danh mục lớn</a> </li>
-                <li> <a href="">Thêm danh mục nhỏ</a> </li>
+                <li> <a href="{{ route('admin.addcategory') }}">Thêm danh mục</a> </li>
               </ul>
             </li>
             <li>
@@ -215,7 +214,7 @@
                 </ul>
             </li>
             <li>
-              <a href="javascript:;"> <i class="fa fa-newspaper-o" aria-hidden="true"></i><span class="title">Quản lý tin</span> <span class=" arrow"></span> </a>
+              <a href="javascript:;"> <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span class="title">Quản lý tin</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
                 <li> <a href="{{ route('admin.news') }}">Danh sách tin</a> </li>
                 <li> <a href="{{ route('admin.addnews') }}">Thêm tin mới</a> </li>
@@ -224,8 +223,9 @@
             <li>
                 <a href="javascript:;"><i class="fa fa-money" aria-hidden="true"></i> <span class="title">Quản lý doanh thu</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
-                  <li> <a href="theme_coporate.html">Nhập hàng</a> </li>
-                  <li> <a href="theme_simple.html">Doanh số</a> </li>
+                  <li> <a href="{{ route('admin.list_import') }}">Danh sách nhập</a> </li>
+                  <li> <a href="{{ route('admin.import_goods') }}">Nhập hàng</a> </li>
+                  <li> <a href="{{ route('admin.sales') }}">Doanh số</a> </li>
                 </ul>
             </li>
             <li>

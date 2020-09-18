@@ -32,11 +32,12 @@
     <table>
         <thead>
           <th style="width: 150px">Tên sản phẩm</th>
-          <th>Giá</th>
-          <th>Giảm giá</th>
+          <th style="width: 50px">Giá</th>
+          <th style="width: 10px">Sale</th>
           <th>Danh mục</th>
           <th>Người tạo</th>
-          <th style="width: 100px">Ngày tạo</th>
+          <th>Trạng thái</th>
+          <th style="width: 70px">Ngày tạo</th>
           <th style="width: 60px"></th>
         </thead>
         <tbody>
@@ -44,16 +45,22 @@
             @foreach ($list_product as $item)
                 <tr>
                     <td style="color: green">{{ $item->product_name }}</td>
-                    <td>{{ number_format($item->price) }}</td>
+                    <td>{{ number_format($item->price) }} đ</td>
                     <td>{{ $item->sale_percent }}%</td>
-                    <td>{{ $item->small_category_product->small_category_name }}</td>
-                    <td>{{ $item->user->username }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td style="display: flex">
-                        @if ($item->status==0)
-                            <a class="button" href="{{ route('admin.editproduct', ['id'=>$item->id]) }}">Sửa</a>
-                            <a class="button" href="{{ route('admin.deleteproduct', ['id'=>$item->id]) }}">Xóa</a>
+                    <td>{{ $item->get_large_category->category_name }}</td>
+                    <td><span style="color: red">{{ $item->user->username }}</span></td>
+                    <td>
+                        @if ($item->status==1)
+                            Hiển thị
+                        @else
+                            <span style="color: red">Không hiển thị</span>
                         @endif
+                    </td>
+                    {{--  <td>{{ $item->created_at->format('M d Y') }}</td>  --}}
+                    <td>15-9-2020</td>
+                    <td style="display: flex">
+                        <a class="button" href="{{ route('admin.editproduct', ['id'=>$item->id]) }}">Sửa</a>
+                        <a class="button" href="{{ route('admin.deleteproduct', ['id'=>$item->id]) }}">Xóa</a>
                     </td>
                 </tr>
             @endforeach

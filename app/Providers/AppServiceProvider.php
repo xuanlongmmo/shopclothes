@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*',function($view){
             $view->with([
                 'data_unique'=> branch::all(),
-                'data_category'=> category_product::all(),
-                'data_category_news'=> category_news::all(),
+                'data_category'=> category_product::where('status',1)->get(),
+                'data_category_news'=> category_news::where('status',1)->get(),
                 'data_messeger'=> contact::where('status',0)->get(),
             ]);
         });
