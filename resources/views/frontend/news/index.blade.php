@@ -17,6 +17,7 @@
                         <figure class="aa-blog-img">
                           <a href="{{ route('frontend.detailnews', ['id'=>$item->id]) }}"><img style="width: 270px;height: 150px;" src="{{ $item->link_image }}" alt="fashion img"></a>
                         </figure>
+                        {{--  Str::limit(str,50)  --}}
                         <div class="news">{!! html_entity_decode($item->content) !!}</div>
                         <div class="aa-article-bottom">
                           <div class="aa-post-author">
@@ -85,6 +86,9 @@
                   <h3>Bài đăng mới nhất</h3>
                   <div class="aa-recently-views">
                     <ul>
+                      @php
+                          $count = 0;
+                      @endphp
                       @foreach ($news as $item)
                         <li>
                           <a class="aa-cartbox-img" href="{{ route('frontend.detailnews', ['id'=>$item->id]) }}"><img src="{{ $item->link_image }}" alt="img"></a>
@@ -93,6 +97,12 @@
                             <p>{{ $item->created_at->format('M d Y') }}</p>
                           </div>                    
                         </li> 
+                        @php
+                            $count++;
+                        @endphp
+                        @if ($count==3)
+                            @break
+                        @endif
                       @endforeach                                    
                     </ul>
                   </div>                            

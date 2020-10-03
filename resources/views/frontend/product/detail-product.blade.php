@@ -50,6 +50,8 @@
                     @else 
                       <p style="margin-top: 10px" class="aa-product-avilability">Trạng thái: <span>Còn hàng</span></p>
                     @endif
+                    <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url()->full() }}&layout=button_count&size=small&appId=2660291120893115&width=119&height=20" width="119" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    <div class="zalo-share-button" data-href="{{ url()->full() }}" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>
                   </div>
                   {{--  <h4>Color</h4>
                   <div class="aa-color-tag">
@@ -342,4 +344,5 @@
   </div>
 </section>
 <!-- / product category -->
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
 @endsection

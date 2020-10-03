@@ -12,6 +12,18 @@ class product extends Model
     protected $table = 'product';
     public $timestamps = true;
 
+    protected $fillable = [
+        'id',
+        'product_name',
+        'link_image',
+        'price',
+        'sale_percent',
+        'description',
+        'status',
+        'id_user',
+        'large_category',
+        'small_category',
+     ]; 
     public function detail_product()
     {
         return $this->hasMany('App\detail_product', 'id_product', 'id');

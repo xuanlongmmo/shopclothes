@@ -42,14 +42,10 @@
         <label for="">Danh mục nhỏ <span style="color: red">(Có thể không chọn)</span></label>
         <select class="a" name="small_category">
             @foreach ($small_category as $item)
-                @if ($data->small_category == 0)
-                    <option selected value="0">Không có</option>
+                @if ($data->small_category == $item->id)
+                    <option selected value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
                 @else
-                    @if ($data->small_category == $item->id)
-                        <option selected value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
-                    @else
-                        <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
-                    @endif
+                    <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
                 @endif
             @endforeach
         </select><br>
@@ -61,19 +57,27 @@
         <span style="color: red">{{ $errors->first('sale') }}</span><br>
         <label for="">Ảnh mô tả</label>
         <input style="border: none" type="file" name="image" />
+        <div class="preview"> 
+            <img id="thumb" width="100px" height="100px" src="{{ $data->link_image }}" /> 
+        </div>
         <span style="color: red">{{ $errors->first('image') }}</span><br>
         <label for="">Ảnh sản phẩm (Có thể chọn được nhiều ảnh)</label>
         <input multiple='multiple' style="border: none" type="file" name="images[]" />
+        <div class="preview"> 
+           @foreach ($data->image_product as $item)
+            <img id="thumb" width="100px" height="100px" src="{{ $item->image }}" />
+           @endforeach 
+        </div>
         <span style="color: red">{{ $errors->first('images') }}</span><br>
         <label for="">Trạng thái</label>
         @if ($data->status==0)
             <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
             <div></div>
-            <input class="check" checked type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span>
+            <input class="check" checked type="radio" name="status" value="0"><span style="font-size: 15px">  Ẩn</span>
         @else
             <input class="check" checked type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
             <div></div>
-            <input class="check" type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span>
+            <input class="check" type="radio" name="status" value="0"><span style="font-size: 15px">  Ẩn</span>
         @endif
         <br><span style="color: red">{{ $errors->first('status') }}</span><br>
         <label for="">Mô tả</label>

@@ -57,4 +57,15 @@
         </tbody>
       </table>
 </div>
+{{--  @section('js')
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        function deletenews(e){
+            var id_news = e.value;
+            $.ajax({
+                
+            });
+        }
+    </script>
+@endsection  --}}
 @endsection

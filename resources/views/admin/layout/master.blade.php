@@ -179,7 +179,7 @@
               <div class="availability-bubble online"></div>
             </div>
             <div class="user-info sm">
-              <div class="username"><span class="semi-bold">{{ Auth::user()->username }}</span></div>
+              <div class="username"><span class="semi-bold"><a href="{{ route('admin.editmyaccount', ['id'=>Auth::user()->id]) }}">{{ Auth::user()->username }}</a></span></div>
               <div class="status">Life goes on...</div>
             </div>
           </div>
@@ -253,12 +253,12 @@
             <li>
                 <a href="javascript:;"> <i class="fa fa-user" aria-hidden="true"></i> <span class="title">Quản lý người dùng</span> <span class=" arrow"></span> </a>
                 <ul class="sub-menu">
-                  <li> <a href="">Danh sách người dùng</a> </li>
-                  <li> <a href="">Danh sách comment</a> </li>
+                  <li> <a href="{{ route('admin.listuser') }}">Danh sách người dùng</a> </li>
+                  <li> <a href="{{ route('admin.listcomment') }}">Danh sách comment</a> </li>
                 </ul>
             </li>
             <li>
-                <a href=""> <i class="material-icons">airplay</i> <span class="title">Quản lý quyền truy cập</span>
+                <a href="{{ route('admin.listsubadmin') }}"> <i class="material-icons">airplay</i> <span class="title">Quản lý quyền truy cập</span>
                 </a>
             </li>
           </ul>
@@ -272,7 +272,7 @@
         </div>
         <div class="pull-right">
           <div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>
-          <a href="lockscreen.html"><i class="material-icons">power_settings_new</i></a></div>
+          <a href="{{ route('admin.logout') }}"><i class="material-icons">power_settings_new</i></a></div>
       </div>
       <!-- END SIDEBAR -->
       <!-- BEGIN PAGE CONTAINER-->

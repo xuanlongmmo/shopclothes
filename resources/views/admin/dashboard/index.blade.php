@@ -9,11 +9,16 @@
         <div class="tiles blue added-margin">
           <div class="tiles-body">
             <div class="tiles-title">TÀI KHOẢN MỚI THÁNG NÀY </div>
-            <div class="heading"> <span class="animate-number" data-value="26.8" data-animation-duration="1200">0</span>% </div>
-            <div class="progress transparent progress-small no-radius">
+            <div class="heading"> <span class="animate-number" data-value="{{ $userthismonth }}" data-animation-duration="1200"></span> user </div>
+            {{--  <div class="progress transparent progress-small no-radius">
               <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="26.8%"></div>
-            </div>
-            <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; 4% higher <span class="blend">than last month</span></span>
+            </div>  --}}
+            <div style="height: 15px"></div>
+            @if ($userthismonth >= $userlastmonth)
+              <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($userthismonth-$userlastmonth)/$userlastmonth)*100,1) }}% higher <span class="blend">than last month</span></span>
+            @else
+              <div class="description"><i class="icon-custom-down"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($userlastmonth-$userthismonth)/$userlastmonth)*100,1) }}% lower <span class="blend">than last month</span></span>
+            @endif
             </div>
           </div>
         </div>

@@ -48,7 +48,11 @@ class LoginController extends Controller
     }
 
     public function getlogin(){
-        return view('frontend.account.login');
+        if(Auth::check()){
+            return redirect()->route('frontend.index');
+        }else{
+            return view('frontend.account.login');
+        }
     }
 
     public function login(login $request){
@@ -76,7 +80,7 @@ class LoginController extends Controller
         $user = user::create($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
-        if(Auth::attempt(['username' => $username, 'password' => $password]) || Auth::attempt(['email' => $username, 'password' => $password]) ){
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password]) || Auth::attempt(['email' => $request->email, 'password' => $request->password]) ){
             return redirect()->route('frontend.index');
         }
     }

@@ -108,8 +108,12 @@ Route::group(['prefix' => 'news'], function() {
 
 //Admin
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/','Admin\AdminController@admin')->name('admin');
-    // Route::get('/','Admin\AdminController@admin')->name('admin')->middleware('admin.checkadmin');
+    Route::get('/','Admin\AdminController@admin')->name('admin')->middleware('checkadmin');
+
+    Route::get('login','Admin\AdminController@login')->name('admin.login');
+    Route::post('login','Admin\AdminController@postlogin')->name('admin.postlogin');
+
+    Route::get('logout','Admin\AdminController@logout')->name('admin.logout');
 });
 
 //Quản lý chi nhánh
@@ -152,6 +156,7 @@ Route::group(['prefix' => 'contact'], function() {
     Route::post('postrefcontact','Admin\ContactController@postrefcontact')->name('admin.postrefcontact');
 });
 
+//Quản lý danh mục
 Route::group(['prefix' => 'category'], function() {
     Route::get('/','Admin\CategoryController@getcategory')->name('admin.category');
     Route::get('deletecategory/{id}','Admin\CategoryController@deletecategory')->name('admin.deletecategory');
@@ -163,6 +168,7 @@ Route::group(['prefix' => 'category'], function() {
     Route::post('posteditcategory','Admin\categoryController@posteditcategory')->name('admin.posteditcategory');
 });
 
+//Quản lý tin tức
 Route::group(['prefix' => 'adminnews'], function() {
     Route::get('/','Admin\NewsController@getnews')->name('admin.news');
     Route::get('deletenews/{id}','Admin\NewsController@deletenews')->name('admin.deletenews');
@@ -174,6 +180,7 @@ Route::group(['prefix' => 'adminnews'], function() {
     Route::post('posteditnews','Admin\NewsController@posteditnews')->name('admin.posteditnews');
 });
 
+//Quản lý sản phẩm
 Route::group(['prefix' => 'adminproduct'], function() {
     Route::get('/','Admin\ProductController@getproduct')->name('admin.product');
     Route::get('deleteproduct/{id}','Admin\ProductController@deleteproduct')->name('admin.deleteproduct');
@@ -185,10 +192,33 @@ Route::group(['prefix' => 'adminproduct'], function() {
     Route::post('posteditproduct','Admin\ProductController@posteditproduct')->name('admin.posteditproduct');
 });
 
+// Quản lý doanh thu
 Route::group(['prefix' => 'revenue'], function() {
     Route::get('/','Admin\RevenueController@list_import')->name('admin.list_import');
     Route::get('sales','Admin\RevenueController@getsales')->name('admin.sales');
 
     Route::get('import_goods','Admin\RevenueController@import_goods')->name('admin.import_goods');
     Route::post('import_goods','Admin\RevenueController@postimport_goods')->name('admin.postimport_goods');
+});
+
+//Quản lí tài khoản và quyền
+Route::group(['prefix' => 'adminaccount'], function() {
+    Route::get('/','Admin\AccountController@listuser')->name('admin.listuser');
+    Route::get('deleteuser/{id}','Admin\AccountController@deleteuser')->name('admin.deleteuser');
+
+    Route::get('subadmin','Admin\AccountController@listsubadmin')->name('admin.listsubadmin');
+
+    Route::get('addsubadmin','Admin\AccountController@addsubadmin')->name('admin.addsubadmin');
+    Route::post('addsubadmin','Admin\AccountController@postaddsubadmin')->name('admin.postaddsubadmin');
+
+    Route::get('editsubadmin/{id}','Admin\AccountController@editsubadmin')->name('admin.editsubadmin');
+    Route::post('editsubadmin','Admin\AccountController@posteditsubadmin')->name('admin.posteditsubadmin');
+
+    Route::get('editmyaccount/{id}','Admin\AccountController@editmyaccount')->name('admin.editmyaccount');
+    Route::post('editmyaccount','Admin\AccountController@posteditmyaccount')->name('admin.posteditmyaccount');
+    Route::post('changepassword','Admin\AccountController@postchangepassword')->name('admin.postchangepassword');
+
+    Route::get('listcomment','Admin\AccountController@listcomment')->name('admin.listcomment');
+
+    Route::get('deletecomment/{id}','Admin\AccountController@deletecomment')->name('admin.deletecomment');
 });
