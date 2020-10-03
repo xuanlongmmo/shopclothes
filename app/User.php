@@ -14,7 +14,6 @@ use App\cart;
 class User extends Authenticatable
 {
     use Notifiable;
-    use hasRoles;
     protected $table = 'users';
 
     /**
@@ -43,5 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function permissions()
+    {
+        return $this->belongsToMany('App\permissions', 'user_has_permissions', 'id_user', 'id_permission');
+    }
     
 }

@@ -53,7 +53,7 @@
                     <a href="#" data-toggle2="tooltip" data-placement="top" title="Xem nhanh" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
                   </div>
                   <!-- product badge -->
-                  {{ $item->review }}   
+                  {{--  {{ $item->review }}     --}}
                     {{--  @php
                         $total = 0;
                         $sold = 0;
@@ -176,7 +176,7 @@
             </ul>
           </div>
           <!-- single sidebar -->
-          <div class="aa-sidebar-widget">
+          {{--  <div class="aa-sidebar-widget">
             <h3>Tags</h3>
             <div class="tag-cloud">
               <a href="#">Fashion</a>
@@ -187,7 +187,7 @@
               <a href="#">Head Phone</a>
               <a href="#">Pen Drive</a>
             </div>
-          </div>
+          </div>  --}}
           <!-- single sidebar -->
           <div class="aa-sidebar-widget">
             <h3>Lọc theo giá</h3>              

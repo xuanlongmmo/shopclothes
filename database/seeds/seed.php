@@ -12,8 +12,8 @@ class seed extends Seeder
     public function run()
     {
         for($i=1;$i<=24;$i++){
-            DB::table('role_has_permissions')->insert([
-                ['permission_id'=>$i,'role_id'=>1],
+            DB::table('user_has_permission')->insert([
+                ['id_user'=>1,'id_permission'=>$i],
             ]);
         }
     }

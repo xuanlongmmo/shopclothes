@@ -11,11 +11,11 @@
                 <div class="aa-footer-widget">
                   <h3>Main Menu</h3>
                   <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ route('frontend.index') }}">Trang chủ</a></li>
+                    <li><a href="{{ route('frontend.listproduct') }}">Sản phẩm</a></li>
+                    <li><a href="{{ route('frontend.news') }}">Tin tức</a></li>
+                    <li><a href="{{ route('frontend.contact') }}">Liên hệ</a></li>
+                    <li><a href="{{ route('frontend.index') }}">Chi nhánh</a></li>
                   </ul>
                 </div>
               </div>
@@ -36,21 +36,7 @@
               <div class="col-md-3 col-sm-6">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Site Map</a></li>
-                      <li><a href="#">Search</a></li>
-                      <li><a href="#">Advanced Search</a></li>
-                      <li><a href="#">Suppliers</a></li>
-                      <li><a href="#">FAQ</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contact Us</h3>
+                    <h3>Liên hệ với chúng tôi</h3>
                     <address>
                       <p>{{ $data_unique[0]->address }}</p>
                       <p><span class="fa fa-phone"></span>{{ $data_unique[0]->phone }}</p>
@@ -65,6 +51,13 @@
                   </div>
                 </div>
               </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="aa-footer-widget">
+                <div class="aa-footer-widget">
+                  <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faobongdasale%2F&tabs=timeline&width=300px&height=50px&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=2660291120893115" width="300px" height="170px" style="margin-top: 25px;border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>

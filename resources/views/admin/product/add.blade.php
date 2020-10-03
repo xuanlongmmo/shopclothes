@@ -29,6 +29,7 @@
         <span style="color: red">{{ $errors->first('product_name') }}</span><br>
         <label for="">Danh mục lớn</label>
         <select class="a" name="large_category">
+            {{--  <optgroup label="Swedish Cars">  --}}
             @foreach ($large_category as $item)
                 <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
             @endforeach
@@ -56,7 +57,7 @@
         <label for="">Trạng thái</label>
         <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
         <div></div>
-        <input class="check" type="radio" name="status" value="2"><span style="font-size: 15px">  Ẩn</span>
+        <input class="check" type="radio" name="status" value="0"><span style="font-size: 15px">  Ẩn</span>
         <br><span style="color: red">{{ $errors->first('status') }}</span><br>
         <label for="">Mô tả</label>
         <textarea name="editor1"></textarea>

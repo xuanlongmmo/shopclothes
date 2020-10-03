@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validateproduct extends FormRequest
+class editproduct extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,11 +28,8 @@ class validateproduct extends FormRequest
             'large_category'=>'required',
             'price'=>'required|numeric|min:0|max:100000000',
             'sale'=>'required|numeric|min:0|max:100',
-            'image'=>'required|mimes:jpeg,jpg,png|max:5120',
-            'images'=>'required|max:5120',
             'status'=>'required',
             'editor1'=>'required',
-            // |mimes:jpeg,jpg,png
         ];
     }
     public function messages()
@@ -50,12 +47,6 @@ class validateproduct extends FormRequest
             'sale.numeric'=>'Giảm giá sản phẩm phải là số',
             'sale.min'=>'Giảm giá sản phẩm không được bé hơn 0%',
             'sale.max'=>'Giảm giá sản phẩm không được lớn hơn 100%',
-            'image.required'=>'Phải upload ảnh cho sản phẩm',
-            'image.mimes'=>'File upload phải có định dạng là jpeg,jpg,png',
-            'image.max'=>'File upload không được nặng quá 5Mb',
-            'images.required'=>'Phải upload ảnh cho sản phẩm',
-            'images.mimes'=>'File upload phải có định dạng là jpeg,jpg,png',
-            'images.max'=>'File upload không được nặng quá 5Mb',
             'status.required'=>'Phải chọn trạng thái',
             'editor1.required'=>'Mô tả sản phẩm không được để trống',
         ];

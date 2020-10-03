@@ -177,7 +177,7 @@
             </ul>
           </div>
           <!-- single sidebar -->
-          <div class="aa-sidebar-widget">
+          {{--  <div class="aa-sidebar-widget">
             <h3>Tags</h3>
             <div class="tag-cloud">
               <a href="#">Fashion</a>
@@ -188,7 +188,7 @@
               <a href="#">Head Phone</a>
               <a href="#">Pen Drive</a>
             </div>
-          </div>
+          </div>  --}}
           <!-- single sidebar -->
           <div class="aa-sidebar-widget">
             <h3>Lọc theo giá</h3>              

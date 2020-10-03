@@ -67,9 +67,14 @@
                               </div>
                               <div class="media-body">
                                <h4 class="author-name">{{ $item->fullname }}</h4>
+                               <a href=""></a> 
                                <span class="comments-date"> {{ $item->created_at->format('M d Y') }}</span>
                                <p>{{ $item->content }}</p>
-                               {{--  <a href="#" class="reply-btn">Reply</a>March 26th 2016  --}}
+                               {{--  <div style="display: flex">
+                                <a href=""><i style="margin-right: 3px;font-size: 18px" class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                                <a href=""><i style="font-size: 18px" class="fa fa-thumbs-o-down" aria-hidden="true"></i></a>
+                               </div>  --}}
+                               {{--  <a href="#" class="reply-btn">Reply</a>  --}}
                               </div>
                             </div>
                           </li>
@@ -159,6 +164,9 @@
                     <h3>Tin liên quan</h3>
                     <div class="aa-recently-views">
                       <ul>
+                        @php
+                          $count = 0;
+                        @endphp
                         @foreach ($list_news as $item)
                           <li>
                             <a class="aa-cartbox-img" href="{{ route('frontend.detailnews', ['id'=>$item->id]) }}"><img src="{{ $item->link_image }}" alt="img"></a>
@@ -167,6 +175,12 @@
                               <p>{{ $item->created_at->format('M d Y') }}</p>
                             </div>                    
                           </li> 
+                          @php
+                            $count++;
+                          @endphp
+                          @if ($count==3)
+                              @break
+                          @endif
                         @endforeach                                    
                       </ul>
                     </div>                            

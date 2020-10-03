@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\admin;
 
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class checkadmin
@@ -15,6 +16,11 @@ class checkadmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check() && Auth::user()->id_role != 3)
+        {
+            return $next($request);
+        }else{
+            return redirect()->route('admin.login');
+        }
     }
 }

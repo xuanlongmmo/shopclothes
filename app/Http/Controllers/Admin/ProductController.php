@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\validateproduct;
+use App\Http\Requests\addproduct;
+use App\Http\Requests\editproduct;
 use Illuminate\Support\Facades\Auth;
 
 //Model
@@ -30,11 +31,11 @@ class ProductController extends Controller
         return view('admin.product.add',compact('large_category','small_category'));
     }
 
-    public function postaddproduct(validateproduct $request){
+    public function postaddproduct(addproduct $request){
         $maxid = product::max('id');
         $imageName = time().'_'.$request->image->getClientOriginalName();
         $request->image->move(public_path('sources/img/products'), $imageName);
-        $save = product::insert([
+        $save = product::create([
             'id' => $maxid+1,
             'product_name' => $request->product_name,
             'link_image' => 'sources/img/products/'.$imageName,
@@ -64,7 +65,41 @@ class ProductController extends Controller
         return view('admin.product.edit',compact('large_category','small_category','data'));
     }
 
-    public function posteditproduct(validateproduct $request){
-        
+    public function posteditproduct(editproduct $request){
+        if($request->image == null){
+            $save = product::where('id',$request->id)->update([
+                'product_name' => $request->product_name,
+                'price' => $request->price,
+                'sale_percent' => $request->sale,
+                'description' => $request->editor1,
+                'status' => $request->status,
+                'large_category' => $request->large_category,
+                'small_category' => $request->small_category,
+            ]);
+        }else{
+            $imageName = time().'_'.$request->image->getClientOriginalName();
+            $request->image->move(public_path('sources/img/products'), $imageName);
+            $save = product::where('id',$request->id)->update([
+                'product_name' => $request->product_name,
+                'link_image' => 'sources/img/products/'.$imageName,
+                'price' => $request->price,
+                'sale_percent' => $request->sale,
+                'description' => $request->editor1,
+                'status' => $request->status,
+                'large_category' => $request->large_category,
+                'small_category' => $request->small_category,
+            ]);
+        }
+        if($request->images != null){
+            foreach($request->images as $item){
+                $imageNames = time().'_'. $item->getClientOriginalName();
+                $item->move(public_path('sources/img/products'), $imageNames);
+                $db = new image_product();
+                $db->id_product = $request->id;
+                $db->image = 'sources/img/products/'.$imageNames;
+                $db->save();
+            }
+        }
+        return redirect()->route('admin.product');
     }
 }
