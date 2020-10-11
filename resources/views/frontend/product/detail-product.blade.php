@@ -50,8 +50,8 @@
                     @else 
                       <p style="margin-top: 10px" class="aa-product-avilability">Trạng thái: <span>Còn hàng</span></p>
                     @endif
-                    <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url()->full() }}&layout=button_count&size=small&appId=2660291120893115&width=119&height=20" width="119" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                    <div class="zalo-share-button" data-href="{{ url()->full() }}" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>
+                    {{--  <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ url()->full() }}&layout=button_count&size=small&appId=2660291120893115&width=119&height=20" width="119" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    <div class="zalo-share-button" data-href="{{ url()->full() }}" data-oaid="579745863508352884" data-layout="1" data-color="blue" data-customize=false></div>  --}}
                   </div>
                   {{--  <h4>Color</h4>
                   <div class="aa-color-tag">
@@ -65,11 +65,13 @@
                   <div class="aa-prod-view-size">
                     @foreach ($product->detail_product as $item)
                       {{--  <a href="#">{{ $item->size }}</a>  --}}
-                      <input type="radio" name="size" value="{{ $item->size }}"><span style="display: inline;margin-right: 30px">{{ $item->size }}</span>
+                      @if ($item->quantity - $item->sold > 0)
+                        <input type="radio" name="size" value="{{ $item->size }}"><span style="display: inline;margin-right: 30px">{{ $item->size }}</span>
+                      @endif
                     @endforeach
                   </div>
                   <div class="aa-prod-quantity">
-                    <form action="">
+                    {{--  <form action="">
                       <select id="" name="">
                         <option selected="1" value="1">1</option>
                         <option value="2">2</option>
@@ -77,8 +79,8 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                       </select>
-                    </form>
-                    <p class="aa-prod-category">
+                    </form>  --}}
+                    <p style="margin-left: 0px;" class="aa-prod-category">
                       Danh mục : <a href="{{ route('frontend.detailcategory', ['slug_name'=>$product->get_large_category->slug_name]) }}">{{ $product->get_large_category->category_name }}</a>
                       @if ($product->small_category != 0)
                         , <a href="{{ route('frontend.detailcategory', ['slug_name'=>$product->get_small_category->slug_name]) }}">{{ $product->get_small_category->category_name }}</a>
@@ -86,7 +88,9 @@
                     </p>
                   </div>
                   <div class="aa-prod-view-bottom">
+                    @if ($product->quantity - $product->sold > 0)
                     <a class="aa-add-to-cart-btn" href="{{ route('frontend.addcart', ['id'=>$product->id]) }}">Thêm vào giỏ hàng</a>
+                    @endif
                     <a class="aa-add-to-cart-btn" href="{{ route('frontend.addwishlist', ['id'=>$product->id]) }}">Thêm vào yêu thích</a>
                   </div>
                 </div>

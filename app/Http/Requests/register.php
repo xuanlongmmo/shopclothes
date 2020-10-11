@@ -26,7 +26,7 @@ class register extends FormRequest
         return [
             'username' => 'required|min:5|max:100|unique:users,username',
             'fullname' => 'required|min:5|max:100',
-            'email' => 'required|min:5|max:100|unique:users,email',
+            'email' => 'required|min:5|max:100|email|unique:users,email',
             'password' => 'required|min:8|max:30',
             'repassword' => 'required|same:password',
         ];
@@ -43,6 +43,7 @@ class register extends FormRequest
             'fullname.min' => 'Tên không được ít hơn 5 kí tự',
             'fullname.max' => 'Tên không được nhiều hơn 100 kí tự',
             'email.required' => 'Email không được để trống',
+            'email.email' => 'Email không đúng định dạng',
             'email.min' => 'Email không ít hơn 5 kí tự',
             'email.max' => 'Email không quá 100 kí tự',
             'email.unique' => 'Email đã được đăng kí bởi tài khoản khác',

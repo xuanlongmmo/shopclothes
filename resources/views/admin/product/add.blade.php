@@ -16,6 +16,10 @@
         width: 12px;
         height: 12px;
     }
+    .tagify{    
+        width: 100%;
+        max-width: 700px;
+      }
 </style>
 @section('content')
 <div class="page-title">
@@ -54,6 +58,7 @@
         <label for="">Ảnh sản phẩm (Có thể chọn được nhiều ảnh)</label>
         <input multiple='multiple' style="border: none" type="file" name="images[]" />
         <span style="color: red">{{ $errors->first('images') }}</span><br>
+        <br>
         <label for="">Trạng thái</label>
         <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
         <div></div>

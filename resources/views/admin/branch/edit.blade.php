@@ -33,14 +33,6 @@
         <input type="text" name="instagram" value="{{ $branch->instagram }}">
         <label for="">Youtube</label>
         <input type="text" name="youtube" value="{{ $branch->youtube }}">
-        @if ($branch->id==1)
-            <label for="">Tên ngân hàng</label>
-            <input type="text" name="bank_name" value="{{ $branch->bank_name }}">
-            <label for="">Số tài khoản</label>
-            <input type="text" name="bank_number" value="{{ $branch->bank_number }}">
-            <label for="">Tên công ty thụ hưởng</label>
-            <input type="text" name="name_company" value="{{ $branch->name_company }}">
-        @endif
         <br><br>
         <button style="margin-bottom: 50px;width: 400px;background: #3598dc"><span style="color: black">Sửa</span></button>
     </form>
