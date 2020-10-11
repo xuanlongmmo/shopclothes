@@ -19,11 +19,26 @@ use Illuminate\Support\Facades\Route;
 
 //Trang chủ
 Route::get('/','Frontend\HomeController@getIndex')->name('frontend.index');
-Route::get('home','Frontend\HomeController@getIndex');
 
 //Tài khoản
-Route::get('account','Frontend\AccountController@account')->name('frontend.account');
-Route::post('account','Frontend\AccountController@updateaccount')->name('frontend.updateaccount');
+Route::group(['prefix' => 'account'], function() {
+    //Thông tin tài khoản
+    Route::get('/','Frontend\AccountController@account')->name('frontend.account');
+    Route::post('updateaccount','Frontend\AccountController@updateaccount')->name('frontend.updateaccount');
+
+    //Đổi ảnh đại diện
+    Route::post('update_image_profile','Frontend\AccountController@update_image_profile')->name('frontend.update_image_profile');
+
+    //Đổi mật khẩu
+    Route::get('changepass','Frontend\AccountController@changepass')->name('frontend.changepass');
+    Route::post('changepass','Frontend\AccountController@postchangepass')->name('frontend.postchangepass');
+
+    //Lịch sử mua hàng
+    Route::get('purchase','Frontend\AccountController@purchase')->name('frontend.purchase');
+    Route::get('detailpurchase/{id}','Frontend\AccountController@detailpurchase')->name('frontend.detailpurchase');
+    Route::get('cancelorder/{id}','Frontend\AccountController@cancelorder')->name('frontend.cancelorder');
+});
+
 
 //Đăng nhập
 Route::get('login','Auth\LoginController@getlogin')->name('frontend.getlogin');
@@ -66,12 +81,28 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('resetcart','Frontend\CartController@resetcart')->name('frontend.resetcart');
 
     //Thêm sản phẩm vào giỏ hàng
-    Route::get('addcart/{id}','Frontend\CartController@addcart')->name('frontend.addcart');
+    Route::get('addcart','Frontend\CartController@addcart')->name('frontend.addcart');
+
+    //Giảm số lượng sản phẩm
+    Route::get('reducequantity','Frontend\CartController@reducequantity')->name('frontend.reducequantity');
+
+    //Tăng số lượng sản phẩm
+    Route::get('updatequantity','Frontend\CartController@updatequantity')->name('frontend.updatequantity');
+
+    //Xóa sản phẩm khỏi giỏ hàng
+    Route::get('deletecart','Frontend\CartController@deletecart')->name('frontend.deletecart');
 });
 
 
 //Thanh toán
-Route::get('checkout','Frontend\CheckoutController@checkout')->name('frontend.checkout');
+Route::group(['prefix' => 'checkout'], function() {
+    Route::get('/','Frontend\CheckoutController@checkout')->name('frontend.checkout');
+
+    Route::post('postcode','Frontend\CheckoutController@postcode')->name('frontend.postcode');
+
+    Route::post('postpayment','Frontend\CheckoutController@postpayment')->name('frontend.postpayment');
+});
+
 
 //Liên hệ
 Route::get('lienhe','Frontend\ContactController@contact')->name('frontend.contact');
@@ -86,8 +117,9 @@ Route::group(['prefix' => 'product'], function() {
     Route::get('/','Frontend\ProductController@listproduct')->name('frontend.listproduct');
 
     //Chi tiết sản phẩm
-    Route::get('detailproduct','Frontend\ProductController@detailproduct')->name('frontend.detailproduct');
+    Route::get('detailproduct/{id}','Frontend\ProductController@detailproduct')->name('frontend.detailproduct');
 
+    Route::get('search','Frontend\ProductController@search')->name('frontend.search');
     //Xem danh sách sản phẩm theo danh mục
     Route::get('/{slug_name}','Frontend\ProductController@detail_category')->name('frontend.detailcategory');
 
@@ -117,39 +149,39 @@ Route::group(['prefix' => 'admin'], function() {
 });
 
 //Quản lý chi nhánh
-Route::group(['prefix' => 'branch'], function() {
+Route::group(['prefix' => 'branch','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\BranchController@getbranch')->name('admin.branch');
     Route::get('deletebanner/{id}','Admin\BranchController@deletebranch')->name('admin.deletebranch');
 
     Route::get('addbranch','Admin\BranchController@addbranch')->name('admin.addbranch');
-    Route::get('postaddbranch','Admin\BranchController@postaddbranch')->name('admin.postaddbranch');
+    Route::post('postaddbranch','Admin\BranchController@postaddbranch')->name('admin.postaddbranch');
 
     Route::get('editbranch/{id}','Admin\BranchController@editbranch')->name('admin.editbranch');
-    Route::get('posteditbranch','Admin\BranchController@posteditbranch')->name('admin.posteditbranch');
+    Route::post('posteditbranch','Admin\BranchController@posteditbranch')->name('admin.posteditbranch');
 });
 
 //Quản lý banner
-Route::group(['prefix' => 'banner'], function() {
+Route::group(['prefix' => 'banner','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\BannerController@getbanner')->name('admin.banner');
 
     Route::get('editbanner/{id}','Admin\BannerController@editbanner')->name('admin.editbanner');
-    Route::get('posteditbanner','Admin\BannerController@posteditbanner')->name('admin.posteditbanner');
+    Route::post('posteditbanner','Admin\BannerController@posteditbanner')->name('admin.posteditbanner');
 });
 
 //Quản lý section
-Route::group(['prefix' => 'section'], function() {
+Route::group(['prefix' => 'section','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\sectionController@getsection')->name('admin.section');
     Route::get('deletesection/{id}','Admin\sectionController@deletesection')->name('admin.deletesection');
 
     Route::get('addsection  ','Admin\sectionController@addsection')->name('admin.addsection');
-    Route::get('postaddsection','Admin\sectionController@postaddsection')->name('admin.postaddsection');
+    Route::post('postaddsection','Admin\sectionController@postaddsection')->name('admin.postaddsection');
 
     Route::get('editsection/{id}','Admin\sectionController@editsection')->name('admin.editsection');
-    Route::get('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
+    Route::post('posteditsection','Admin\sectionController@posteditsection')->name('admin.posteditsection');
 });
 
 //Quản lý liên hệ
-Route::group(['prefix' => 'contact'], function() {
+Route::group(['prefix' => 'contact','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\ContactController@getcontact')->name('admin.contact');
 
     Route::get('getrefcontact/{id}','Admin\ContactController@getrefcontact')->name('admin.getrefcontact');
@@ -157,7 +189,8 @@ Route::group(['prefix' => 'contact'], function() {
 });
 
 //Quản lý danh mục
-Route::group(['prefix' => 'category'], function() {
+Route::group(['prefix' => 'category','middleware'=>['checkadmin']], function() {
+    // QUản lý danh mục sản phẩm
     Route::get('/','Admin\CategoryController@getcategory')->name('admin.category');
     Route::get('deletecategory/{id}','Admin\CategoryController@deletecategory')->name('admin.deletecategory');
 
@@ -166,10 +199,20 @@ Route::group(['prefix' => 'category'], function() {
 
     Route::get('editcategory/{id}','Admin\categoryController@editcategory')->name('admin.editcategory');
     Route::post('posteditcategory','Admin\categoryController@posteditcategory')->name('admin.posteditcategory');
+    
+    // QUản lý danh mục tin
+    Route::get('news','Admin\CategoryController@getcategorynews')->name('admin.categorynews');
+    Route::get('deletecategorynews/{id}','Admin\CategoryController@deletecategorynews')->name('admin.deletecategorynews');
+
+    Route::get('addcategorynews','Admin\CategoryController@addcategorynews')->name('admin.addcategorynews');
+    Route::post('postaddcategorynews','Admin\CategoryController@postaddcategorynews')->name('admin.postaddcategorynews');
+
+    Route::get('editcategorynews/{id}','Admin\categoryController@editcategorynews')->name('admin.editcategorynews');
+    Route::post('posteditcategorynews','Admin\categoryController@posteditcategorynews')->name('admin.posteditcategorynews');
 });
 
 //Quản lý tin tức
-Route::group(['prefix' => 'adminnews'], function() {
+Route::group(['prefix' => 'adminnews','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\NewsController@getnews')->name('admin.news');
     Route::get('deletenews/{id}','Admin\NewsController@deletenews')->name('admin.deletenews');
 
@@ -181,7 +224,7 @@ Route::group(['prefix' => 'adminnews'], function() {
 });
 
 //Quản lý sản phẩm
-Route::group(['prefix' => 'adminproduct'], function() {
+Route::group(['prefix' => 'adminproduct','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\ProductController@getproduct')->name('admin.product');
     Route::get('deleteproduct/{id}','Admin\ProductController@deleteproduct')->name('admin.deleteproduct');
 
@@ -193,7 +236,7 @@ Route::group(['prefix' => 'adminproduct'], function() {
 });
 
 // Quản lý doanh thu
-Route::group(['prefix' => 'revenue'], function() {
+Route::group(['prefix' => 'revenue','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\RevenueController@list_import')->name('admin.list_import');
     Route::get('sales','Admin\RevenueController@getsales')->name('admin.sales');
 
@@ -202,7 +245,7 @@ Route::group(['prefix' => 'revenue'], function() {
 });
 
 //Quản lí tài khoản và quyền
-Route::group(['prefix' => 'adminaccount'], function() {
+Route::group(['prefix' => 'adminaccount','middleware'=>['checkadmin']], function() {
     Route::get('/','Admin\AccountController@listuser')->name('admin.listuser');
     Route::get('deleteuser/{id}','Admin\AccountController@deleteuser')->name('admin.deleteuser');
 
@@ -221,4 +264,24 @@ Route::group(['prefix' => 'adminaccount'], function() {
     Route::get('listcomment','Admin\AccountController@listcomment')->name('admin.listcomment');
 
     Route::get('deletecomment/{id}','Admin\AccountController@deletecomment')->name('admin.deletecomment');
+});
+
+//Quản lí discount
+Route::group(['prefix' => 'discount','middleware'=>['checkadmin']], function() {
+    //Danh sách discount
+    Route::get('discount', 'Admin\DiscountController@index')->name('admin.discount');
+
+    //Thêm discount
+    Route::get('adddiscount', 'Admin\DiscountController@adddiscount')->name('admin.adddiscount');
+    Route::post('adddiscount', 'Admin\DiscountController@postadddiscount')->name('admin.postadddiscount');
+    
+    //Xóa discount
+    Route::get('deletediscount', 'Admin\DiscountController@adddiscount')->name('admin.deletediscount');
+});
+
+//Quản lí đơn hàng
+Route::group(['prefix' => 'order','middleware'=>['checkadmin']], function() {
+    Route::get('/','Admin\OrderController@order')->name('admin.order');
+    Route::get('detailorder/{id}','Admin\OrderController@detailorder')->name('admin.detailorder');
+    Route::get('updateorder/{id}/{status}','Admin\OrderController@updateorder')->name('admin.updateorder');
 });

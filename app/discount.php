@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class category_news extends Model
+class discount extends Model
 {
     
     public function user()

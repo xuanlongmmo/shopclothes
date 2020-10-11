@@ -21,11 +21,11 @@ class cart extends Model
 
     public function user()
     {
-        return $this->hasOne('App\User', 'id_user', 'id');
+        return $this->hasOne('App\User', 'id', 'id_user');
     }
     
     public function product()
     {
-        return $this->hasMany('App\product', 'id_product', 'id');
+        return $this->hasOne('App\product', 'id', 'id_product');
     }
 }

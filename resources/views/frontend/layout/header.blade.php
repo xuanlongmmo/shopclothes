@@ -116,19 +116,19 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="{{ route('frontend.index') }}">
+                {{--  <a href="{{ route('frontend.index') }}">
                   <span class="fa fa-shopping-cart"></span>
                   <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
-                </a>
+                </a>  --}}
                 <!-- img based logo -->
-                <!-- <a href=""><img src="sources/img/logo.jpg" alt="logo img"></a> -->
+                <a href=""><img style="width: 60px;height: 60px;" src="sources/img/logo2.png" alt="logo img"></a>
               </div>
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
                 <a class="aa-cart-link" href="{{ route('frontend.cart') }}">
                   <span class="fa fa-shopping-basket"></span>
-                  <span class="aa-cart-title">SHOPPING CART</span> 
+                  <span class="aa-cart-title">GIỎ HÀNG</span> 
                   @if (session()->has('count') || Auth::check())
                     <span id="cartttt" class="aa-cart-notify">{{ session('count') }}</span>
                   @else
@@ -140,8 +140,8 @@
               <!-- / cart box -->
               <!-- search box -->
               <div class="aa-search-box">
-                <form action="">
-                  <input type="text" name="" id="" placeholder="Tìm kiếm sản phẩm ?">
+                <form action="{{ route('frontend.search') }}" method="GET">
+                  <input type="text" name="search" id="" placeholder="Tìm kiếm sản phẩm ?">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>

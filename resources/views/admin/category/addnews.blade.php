@@ -19,25 +19,14 @@
 </style>
 @section('content')
 <div class="page-title">
-    <h3>Thêm danh mục mới</h3>
+    <h3>Thêm danh mục tin tức mới</h3>
 </div>
 <div style="margin-left: 30px" class="form">
-    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.postaddcategory') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('admin.postaddcategorynews') }}">
         @csrf
         <label for="">Tên danh mục</label>
         <input type="text" name="category_name"><br>
         <span style="color: red">{{ $errors->first('category_name') }}</span><br>
-        <label for="">Loại danh mục</label>
-        <input class="check" type="radio" name="type" value="1"><span style="font-size: 15px">  Danh mục lớn</span>
-        <div></div>
-        <input class="check" type="radio" name="type" value="2"><span style="font-size: 15px">  Danh mục nhỏ</span>
-        <br><span style="color: red">{{ $errors->first('type') }}</span><br>
-        <label for="">Danh mục lớn <span style="color: red">(Nếu danh mục lớn thì không cần chọn mục này)</span></label>
-        <select class="a" name="category">
-            @foreach ($large_category as $item)
-                <option value="{{ $item->id }}">{{ $item->id }} - {{ $item->category_name }}</option>
-            @endforeach
-        </select><br>
         <label for="">Trạng thái</label>
         <input class="check" type="radio" name="status" value="1"><span style="font-size: 15px">  Hiển thị</span>
         <div></div>

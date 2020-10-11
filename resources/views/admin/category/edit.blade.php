@@ -28,9 +28,6 @@
         <label for="">Tên danh mục</label>
         <input type="text" value="{{ $data->category_name }}" name="category_name"><br>
         <span style="color: red">{{ $errors->first('category_name') }}</span><br>
-        <label for="">Slug</label>
-        <input type="text" value="{{ $data->slug_name }}" name="slug_name"><br>
-        <span style="color: red">{{ $errors->first('slug_name') }}</span><br>
         <label for="">Loại danh mục</label>
         @if ($data->id_parent == 0)
             <input class="check" checked type="radio" name="type" value="1"><span style="font-size: 15px">  Danh mục lớn</span>

@@ -81,6 +81,7 @@ class LoginController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password]) || Auth::attempt(['email' => $request->email, 'password' => $request->password]) ){
+            session()->put('count',0);
             return redirect()->route('frontend.index');
         }
     }

@@ -18,12 +18,10 @@ class WishlistController extends Controller
             $wishlist = Auth::user()->wishlist;
             if(empty($wishlist)){
                 $data = [];
-                return view('frontend.wishlist.index',compact('data'));
             }else{
-                $array = explode(',',$wishlist);
                 $data = $dataproduct->whereRaw("id IN({$wishlist})")->get();
-                return view('frontend.wishlist.index',compact('data'));
             }
+            return view('frontend.wishlist.index',compact('data'));
         }else{
             return redirect()->route('frontend.login');
         }

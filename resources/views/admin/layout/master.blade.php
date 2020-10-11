@@ -192,7 +192,7 @@
               <a href="widgets.html"> <i class="material-icons">panorama_horizontal</i> <span class="title">Widgets</span> <span class="label label-important bubble-only pull-right "></span></a>
             </li>  --}}
             <li>
-              <a href="email.html"> <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="title">Đơn hàng</span> <span class=" badge badge-disable pull-right ">203</span>
+              <a href="{{ route('admin.order') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="title">Đơn hàng</span> <span class=" badge badge-disable pull-right ">{{ count($data_unique_order) }}</span>
               </a>
             </li>
             <li>
@@ -202,8 +202,10 @@
             <li>
               <a href="javascript:;"> <i class="fa fa-list" aria-hidden="true"></i> <span class="title">Quản lý danh mục</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
-                <li> <a href="{{ route('admin.category') }}">Danh sách danh mục </a> </li>
-                <li> <a href="{{ route('admin.addcategory') }}">Thêm danh mục</a> </li>
+                <li> <a href="{{ route('admin.category') }}">Danh sách danh mục sản phẩm</a> </li>
+                <li> <a href="{{ route('admin.addcategory') }}">Thêm danh mục sản phẩm</a> </li>
+                <li> <a href="{{ route('admin.categorynews') }}">Danh sách danh mục tin tức</a> </li>
+                <li> <a href="{{ route('admin.addcategorynews') }}">Thêm danh mục tin tức</a> </li>
               </ul>
             </li>
             <li>
@@ -231,8 +233,8 @@
             <li>
               <a href="javascript:;"> <i class="fa fa-cc-discover" aria-hidden="true"></i> <span class="title">Quản lý discount</span> <span class=" arrow"></span> </a>
               <ul class="sub-menu">
-                <li> <a href="">Danh sách discount</a> </li>
-                <li> <a href="">Thêm discount</a> </li>
+                <li> <a href="{{ route('admin.discount') }}">Danh sách discount</a> </li>
+                <li> <a href="{{ route('admin.adddiscount') }}">Thêm discount</a> </li>
               </ul>
           </li>
             <li>

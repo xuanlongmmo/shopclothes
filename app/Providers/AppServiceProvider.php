@@ -8,6 +8,7 @@ use App\branch;
 use App\User;
 use App\category_news;
 use App\contact;
+use App\order;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 'data_category'=> category_product::where('status',1)->get(),
                 'data_category_news'=> category_news::where('status',1)->get(),
                 'data_messeger'=> contact::where('status',0)->get(),
+                'data_unique_order'=> order::where('id_status',1)->get(),
             ]);
         });
     }
