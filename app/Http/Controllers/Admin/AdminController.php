@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Http\Requests\login;
 
 use App\user;
+use App\order;
 use App\cart;
 
 class AdminController extends Controller
@@ -25,7 +26,29 @@ class AdminController extends Controller
                 $userlastmonth++;
             }
         }
-        return view('admin.dashboard.index',compact('userthismonth','userlastmonth'));
+
+        $order = order::all();
+        $totalpaythismonth = 0;
+        $totalpaylastmonth = 0;
+        $orderthismonth = 0;
+        $orderlastmonth = 0;
+        foreach($order as $item){
+            if($item->created_at->format('m') == Carbon::now()->month ){
+                $orderthismonth++;
+            }
+            if($item->created_at->format('m') == (Carbon::now()->month)-1){
+                $orderlastmonth++;
+            }
+            if($item->created_at->format('m') == Carbon::now()->month && $item->id_status == 3){
+                $totalpaythismonth = $orderthismonth + $item->total_pay;
+            }
+            if($item->created_at->format('m') == (Carbon::now()->month)-1 && $item->id_status == 3){
+                $totalpaylastmonth = $totalpaylastmonth + $item->total_pay;
+            }
+        }
+        // echo 'PayL-'.$totalpaylastmonth.'<br>PayM-'.$totalpaythismonth.'<br>OrderL-'.$orderlastmonth.'<br>OrderM-'.$orderthismonth;
+
+        return view('admin.dashboard.index',compact('userthismonth','userlastmonth','order','totalpaythismonth','totalpaylastmonth','orderthismonth','orderlastmonth'));
     }
 
     public function login(){
