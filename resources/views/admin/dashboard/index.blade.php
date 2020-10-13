@@ -40,11 +40,23 @@
         <div class="tiles red added-margin">
           <div class="tiles-body">
             <div class="tiles-title"> TỔNG TIỀN THÁNG NÀY </div>
-            <div class="heading">  <span class="animate-number" data-value="14500000" data-animation-duration="1200">0</span> VNĐ </div>
+            <div class="heading">  <span class="animate-number" data-value="{{ number_format($totalpaythismonth) }}" data-animation-duration="1200"></span> VNĐ </div>
             <div class="progress transparent progress-white progress-small no-radius">
-              <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="45%"></div>
+              @if ($totalpaythismonth > $totalpaylastmonth)
+                @if ($totalpaythismonth / $totalpaylastmonth >=1)
+                  <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="100%"></div>
+                @else
+                  <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="{{ (($totalpaythismonth-$totalpaylastmonth)/$totalpaylastmonth)*100 }}%"></div>
+                @endif
+              @else
+                <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="0%"></div>
+              @endif
             </div>
-            <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; 5% higher <span class="blend">than last month</span></span>
+            @if ($totalpaythismonth >= $totalpaylastmonth)
+              <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($totalpaythismonth-$totalpaylastmonth)/$totalpaylastmonth)*100,1) }}% higher <span class="blend">than last month</span></span>
+            @else
+              <div class="description"><i class="icon-custom-down"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($totalpaylastmonth-$totalpaythismonth)/$totalpaylastmonth)*100,1) }}% lower <span class="blend">than last month</span></span>
+            @endif
             </div>
           </div>
         </div>
@@ -54,12 +66,23 @@
           <div class="tiles-body">
             <div class="tiles-title"> TỔNG ĐƠN HÀNG THÁNG NÀY</div>
             <div class="row-fluid">
-              <div class="heading"> <span class="animate-number" data-value="1600" data-animation-duration="700">0</span> </div>
+              <div class="heading"> <span class="animate-number" data-value="{{ $orderthismonth }}" data-animation-duration="700">0</span> </div>
               <div class="progress transparent progress-white progress-small no-radius">
-                <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="80%"></div>
-              </div>
+                @if ($orderthismonth > $orderlastmonth)
+                  @if ($orderthismonth / $orderlastmonth >=1)
+                    <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="100%"></div>
+                  @else
+                    <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="{{ (($orderthismonth-$orderlastmonth)/$orderlastmonth)*100 }}%"></div>
+                  @endif
+                @else
+                  <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="0%"></div>
+                @endif
             </div>
-            <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; 3% higher <span class="blend">than last month</span></span>
+            @if ($orderthismonth >= $orderlastmonth)
+              <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($orderthismonth-$orderlastmonth)/$orderlastmonth)*100,1) }}% higher <span class="blend">than last month</span></span>
+            @else
+              <div class="description"><i class="icon-custom-down"></i><span class="text-white mini-description ">&nbsp; {{ ROUND((($orderlastmonth-$orderthismonth)/$orderlastmonth)*100,1) }}% lower <span class="blend">than last month</span></span>
+            @endif
             </div>
           </div>
         </div>
