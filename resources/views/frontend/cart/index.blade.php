@@ -30,7 +30,7 @@
                           @foreach ($data as $item)
                             <tr>
                               <td><a class="remove" href="{{ route('frontend.deletecart', ['id'=>$item->product->id]) }}"><fa class="fa fa-close"></fa></a></td>
-                              <td><a href="{{ route('frontend.detailproduct', ['id'=>$item->id]) }}"><img src="{{ $item->product->link_image }}" alt="img"></a></td>
+                              <td><a href="{{ route('frontend.detailproduct', ['id'=>$item->product->id]) }}"><img src="{{ $item->product->link_image }}" alt="img"></a></td>
                               <td><a class="aa-cart-title" href="{{ route('frontend.detailproduct', ['id'=>$item->product->id]) }}">{{ $item->product->product_name }}</a></td>
                               <td>{{number_format($item->product->price) }} vnđ</td>
                               <td>{{ $item->product->sale_percent }}%</td>

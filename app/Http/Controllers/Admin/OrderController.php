@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\order;
+use App\order_status;
 use App\product;
 
 class OrderController extends Controller
 {
     public function order(){
         $data_order = order::all();
-        return view('admin.order.index',compact('data_order'));
+        $order_status = order_status::all();
+        return view('admin.order.index',compact('data_order','order_status'));
     }
 
     public function detailorder($id){

@@ -54,12 +54,12 @@
           <!-- END LOGO -->
           <ul class="nav pull-right notifcation-center">
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="index.html" class="dropdown-toggle active" data-toggle="">
+              <a href="{{ route('admin') }}" class="dropdown-toggle active" data-toggle="">
                 <i class="material-icons">home</i>
               </a>
             </li>
             <li class="dropdown hidden-xs hidden-sm">
-              <a href="email.html" class="dropdown-toggle">
+              <a href="{{ route('admin.contact') }}" class="dropdown-toggle">
                 <i class="material-icons">email</i><span class="badge bubble-only"></span>
               </a>
             </li>
@@ -83,7 +83,7 @@
             </ul>
             <ul class="nav quick-section">
               <li class="quicklinks  m-r-10">
-                <a href="#" class="">
+                <a href="{{ url()->current() }}" class="">
                   <i class="material-icons">refresh</i>
                 </a>
               </li>
@@ -185,7 +185,7 @@
           </div>
           <!-- END MINI-PROFILE -->
           <!-- BEGIN SIDEBAR MENU -->
-          <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i class="material-icons">refresh</i></a></span></p>
+          <p class="menu-title sm">BROWSE <span class="pull-right"><a href="{{ url()->current() }}"><i class="material-icons">refresh</i></a></span></p>
           <ul>
             <li class="start  open active "> <a href="{{ route('admin') }}"><i class="material-icons">home</i> <span class="title">Dashboard</span> <span class="selected"></span>  </a></li>
             {{--  <li>
@@ -273,7 +273,7 @@
           <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="79%" style="width: 79%;"></div>
         </div>
         <div class="pull-right">
-          <div class="details-status"> <span class="animate-number" data-value="86" data-animation-duration="560">86</span>% </div>
+          <div class="details-status"> <span class="animate-number" data-value="100" data-animation-duration="560"></span>% </div>
           <a href="{{ route('admin.logout') }}"><i class="material-icons">power_settings_new</i></a></div>
       </div>
       <!-- END SIDEBAR -->

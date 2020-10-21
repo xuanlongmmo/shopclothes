@@ -35,13 +35,16 @@
     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  
 
+    {{--  Toastr  --}}
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
   </head>
   <body> 
   @include('frontend.layout.header')
@@ -71,6 +74,14 @@
   <script type="text/javascript" src="sources/js/nouislider.js"></script>
   <!-- Custom js -->
   <script src="sources/js/custom.js"></script> 
-
+  @if (session('success'))
+    <script>
+      toastr.success("{{ Session::get('success') }}");
+    </script>
+  @elseif(session('error'))
+    <script>
+      toastr.error("{{ Session::get('error') }}");
+    </script>
+  @endif
   </body>
 </html>
