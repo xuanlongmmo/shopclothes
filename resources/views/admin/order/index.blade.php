@@ -27,6 +27,14 @@
 <div class="page-title">
     <h3>Danh sách đơn hàng</h3>
 </div>
+    <div style="display: flex;min-height: 20px;">
+        <select name="" id="">
+            @foreach ($order_status as $item)
+                <a href=""><option value="">{{ $item->name_status }}</option></a>
+            @endforeach
+        </select>
+        <a style="width: 200px;margin-bottom: 20px;margin-left: 650px" class="button2" href="{{ route('admin.exportorder') }}"><i class="fa fa-plus" aria-hidden="true"></i> Xuất excel</a>
+    </div>
 <div>
     <table>
         <thead>

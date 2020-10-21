@@ -285,3 +285,8 @@ Route::group(['prefix' => 'order','middleware'=>['checkadmin']], function() {
     Route::get('detailorder/{id}','Admin\OrderController@detailorder')->name('admin.detailorder');
     Route::get('updateorder/{id}/{status}','Admin\OrderController@updateorder')->name('admin.updateorder');
 });
+
+//Xuất exel
+Route::group(['prefix' => 'export'], function() {
+    Route::get('exportorder', 'Export\ExportOrderController@exportorder')->name('admin.exportorder');
+});

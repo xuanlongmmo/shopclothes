@@ -66,9 +66,10 @@ class LoginController extends Controller
                 $count = $count + $item->quantity;
             }
             session()->put('count',$count);
-            return redirect()->route('frontend.index');
+            return redirect()->route('frontend.index')->with('success','Đăng nhập thành công!');
         }else{
-            return redirect()->route('frontend.login');
+            return back()->with('error','Đăng nhập thành công! Sai tên đăng nhập hoặc mật khẩu');
+            // return redirect()->route('frontend.login');
         }
     }
 
@@ -82,7 +83,7 @@ class LoginController extends Controller
         $user->save();
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password]) || Auth::attempt(['email' => $request->email, 'password' => $request->password]) ){
             session()->put('count',0);
-            return redirect()->route('frontend.index');
+            return redirect()->route('frontend.index')->with('success','Đăng kí thành công!');
         }
     }
 
